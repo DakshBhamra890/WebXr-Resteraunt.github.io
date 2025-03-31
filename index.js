@@ -71,6 +71,7 @@ const createScene = async function() {
     roofTraingle2.material = wallmaterial;
 
 
+
     // adding the chandelier model 
     BABYLON.SceneLoader.ImportMesh(
         null,      
@@ -227,26 +228,29 @@ const createScene = async function() {
             console.error("Error loading mesh:", error);
             }
         ),
-        // adding a sound in the scene
-
 );
-const sound = new BABYLON.Sound("restraunt", "./29560__dude3966__restraunt2.wav", scene, null, {
+// adding a sound in the scene
+const sound = new BABYLON.Sound("restraunt", "29560__dude3966__restraunt2.wav", scene, null, {
     loop: true,
     autoplay: true
 });
 
-// adding the webXR experience
-if ( await BABYLON.WebXRSessionManager.IsSessionSupportedAsync("immersive-vr")) {
-    const xr = await scene.createDefaultXRExperienceAsync({
-    floorMeshes: [ground],
-    optionalFeatures: true
-    });
-    } else {
-    console.log("WebXR is not supported on this device.");
-};
+    // adding the webXR experience
+    if ( await BABYLON.WebXRSessionManager.IsSessionSupportedAsync("immersive-vr")) {
+        const xr = await scene.createDefaultXRExperienceAsync({
+            floorMeshes: [ground],
+            optionalFeatures: true
+        });
+    } 
+    else {
+        console.log("WebXR is not supported on this device.");
+    }
+
     return scene;
 };
 
-const scene = createScene();
-engine.runRenderLoop(() => scene.render());
-window.addEventListener("resize", () => engine.resize());
+
+createScene().then((scene) => {
+    engine.runRenderLoop(() => scene.render());
+    window.addEventListener("resize", () => engine.resize());
+});
