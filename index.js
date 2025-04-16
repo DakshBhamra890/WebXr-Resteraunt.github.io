@@ -205,8 +205,14 @@ const createScene = async function() {
                     mesh.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5);
                     mesh.position = new BABYLON.Vector3(5, 0.85, 3);
                     mesh.rotation.y = Math.PI;
-                });
-            },
+
+                    mesh.actionManager = new BABYLON.ActionManager(scene);
+                    mesh.actionManager.registerAction(
+                    new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, () => {
+                    document.getElementById("menuImage").style.display = "block";
+                    
+                }));
+            })},
         function (error) { 
             console.error("Error loading mesh:", error);
             }
