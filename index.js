@@ -209,7 +209,8 @@ const createScene = async function() {
                     mesh.actionManager = new BABYLON.ActionManager(scene);
                     mesh.actionManager.registerAction(
                     new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, () => {
-                    document.getElementById("menuImage").style.display = "block";
+                    const menuImage = document.getElementById("menuImage");
+                    menuImage.style.display = (menuImage.style.display === "block") ? "none" : "block";
                     
                 }));
             })},
@@ -231,7 +232,8 @@ const createScene = async function() {
                     mesh.actionManager = new BABYLON.ActionManager(scene);
                     mesh.actionManager.registerAction(
                     new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, () => {
-                    document.getElementById("menuImage").style.display = "block";
+                    const menuImage = document.getElementById("menuImage");
+                    menuImage.style.display = (menuImage.style.display === "block") ? "none" : "block";
                     
                 }));
             })},
